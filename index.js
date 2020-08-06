@@ -64,7 +64,7 @@ app.get("/characters", async (req, res) => {
 
     let apiLink = "http://gateway.marvel.com/v1/public/characters?limit=100";
     if (nameStartsWith) {
-        apiLink = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${nameStartsWith}?limit=100`;
+        apiLink = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${nameStartsWith}&limit=100`;
     }
     if (offset) {
         apiLink += `&offset=${offset}`;
@@ -80,23 +80,23 @@ app.get("/characters", async (req, res) => {
     }
 });
 
-app.get("/charactersSearch", async (req, res) => {
-    console.log("route /charactersSearch");
+// app.get("/charactersSearch", async (req, res) => {
+//     console.log("route /charactersSearch");
 
-    const nameStartsWith = req.query.nameStartsWith;
+//     const nameStartsWith = req.query.nameStartsWith;
 
-    let apiLink = "http://gateway.marvel.com/v1/public/characters?limit=100";
-    if (nameStartsWith) {
-        apiLink = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${nameStartsWith}`;
-    }
-    apiLink += `&limit=100&ts=${timestamp}&apikey=${process.env.MARVEL_PUBLIC_API_KEY}&hash=${myHash}`;
-    try {
-        const response = await axios.get(apiLink);
-        res.json(response.data.data);
-    } catch (error) {
-        console.log(error);
-    }
-});
+//     let apiLink = "http://gateway.marvel.com/v1/public/characters?limit=100";
+//     if (nameStartsWith) {
+//         apiLink = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${nameStartsWith}`;
+//     }
+//     apiLink += `&limit=100&ts=${timestamp}&apikey=${process.env.MARVEL_PUBLIC_API_KEY}&hash=${myHash}`;
+//     try {
+//         const response = await axios.get(apiLink);
+//         res.json(response.data.data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
 
 app.get("/", (req, res) => {
     res.json({ message: "Yo" });
