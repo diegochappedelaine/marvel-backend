@@ -38,16 +38,14 @@ app.get("/comics", async (req, res) => {
     }
 });
 
-app.get("/comicssSearch", async (req, res) => {
-    console.log("route /comicssSearch");
+app.get("/comics/:id", async (req, res) => {
+    console.log("route /characters param");
+    const id = req.params.id;
 
-    const titleStartsWith = req.query.titleStartsWith;
+    let apiLink = `http://gateway.marvel.com/v1/public/comics/${id}`;
 
-    let apiLink = "http://gateway.marvel.com/v1/public/comics?limit=100";
-    if (titleStartsWith) {
-        apiLink = `http://gateway.marvel.com/v1/public/comics?titleStartsWith=${titleStartsWith}`;
-    }
-    apiLink += `&limit=100&ts=${timestamp}&apikey=${process.env.MARVEL_PUBLIC_API_KEY}&hash=${myHash}`;
+    apiLink += `?ts=${timestamp}&apikey=${process.env.MARVEL_PUBLIC_API_KEY}&hash=${myHash}`;
+
     try {
         const response = await axios.get(apiLink);
         res.json(response.data.data);
@@ -80,23 +78,21 @@ app.get("/characters", async (req, res) => {
     }
 });
 
-// app.get("/charactersSearch", async (req, res) => {
-//     console.log("route /charactersSearch");
+app.get("/characters/:id", async (req, res) => {
+    console.log("route /characters param");
+    const id = req.params.id;
 
-//     const nameStartsWith = req.query.nameStartsWith;
+    let apiLink = `http://gateway.marvel.com/v1/public/characters/${id}`;
 
-//     let apiLink = "http://gateway.marvel.com/v1/public/characters?limit=100";
-//     if (nameStartsWith) {
-//         apiLink = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${nameStartsWith}`;
-//     }
-//     apiLink += `&limit=100&ts=${timestamp}&apikey=${process.env.MARVEL_PUBLIC_API_KEY}&hash=${myHash}`;
-//     try {
-//         const response = await axios.get(apiLink);
-//         res.json(response.data.data);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
+    apiLink += `?ts=${timestamp}&apikey=${process.env.MARVEL_PUBLIC_API_KEY}&hash=${myHash}`;
+
+    try {
+        const response = await axios.get(apiLink);
+        res.json(response.data.data);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 app.get("/", (req, res) => {
     res.json({ message: "Yo" });
