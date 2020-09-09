@@ -10,4 +10,4 @@ A simple project  made with React using Marvel Comics API, you can try it [here]
 
 Made during bootcamp [**@lereacteur**](https://www.lereacteur.io/)
 
-![enter image description here](https://res.cloudinary.com/diegochappedelaine/image/upload/v1599608477/Capture_d_e%CC%81cran_le_2020-09-09_a%CC%80_01.40.08_ymsxfn.png)
+![enter image description here](https://res.cloudinary.com/diegochappedelaine/image/upload/v1599647794/marvel_lqsi4r.png)
